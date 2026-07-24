@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You Mahek ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff4d6d,#ff7aa2,#ffb3c7,#ffd6e0);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+position:relative;
+z-index:2;
+text-align:center;
+padding:20px;
+color:white;
+}
+
+h1{
+font-size:42px;
+text-shadow:0 0 15px white;
+margin-bottom:15px;
+min-height:55px;
+}
+
+.photo{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:6px solid white;
+box-shadow:0 0 25px rgba(255,255,255,.8);
+animation:floatPhoto 4s ease-in-out infinite;
+}
+
+@keyframes floatPhoto{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+p{
+font-size:20px;
+margin:20px 0;
+}
+
+button{
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:white;
+color:#ff4d6d;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+animation:glow 2s infinite;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+@keyframes glow{
+50%{
+box-shadow:0 0 25px white;
+}
+}
+
+.heart,.rose{
+position:absolute;
+bottom:-40px;
+animation:fly linear forwards;
+pointer-events:none;
+}
+
+@keyframes fly{
+0%{
+transform:translateY(0) scale(.5);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,.75);
+z-index:999;
+}
+
+.card{
+background:white;
+width:90%;
+max-width:380px;
+padding:25px;
+border-radius:20px;
+text-align:center;
+color:#ff4d6d;
+animation:zoom .4s;
+}
+
+@keyframes zoom{
+from{transform:scale(.6);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+.ring{
+font-size:55px;
+animation:ring 1.2s infinite;
+}
+
+@keyframes ring{
+50%{
+transform:scale(1.2) rotate(15deg);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="title"></h1>
+
+<img src="5645.jpg" class="photo">
+
+<p>You are my happiness, my smile and my forever ❤️</p>
+
+<button onclick="showLetter()">
+💖 Will You Be Mine Forever?
+</button>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="card">
+
+<h2>💌 My Love Letter</h2>
+
+<p id="letter">
+Dear Mahek ❤️<br><br>
+You are the most beautiful part of my life.<br>
+Every heartbeat reminds me of you.<br><br>
+I Love You Forever ❤️
+</p>
+
+<div class="ring">💍</div>
+
+<br><br>
+
+<button onclick="closeLetter()">
+Forever ❤️
+</button>
+
+</div>
+
+</div>
+
+<script>let text="❤️ I Love You Mahek ❤️";
+let i=0;
+
+// Typewriter Effect
+function typeWriter(){
+    if(i<text.length){
+        document.getElementById("title").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter,100);
+    }
+}
+typeWriter();
+
+// Floating Hearts & Roses
+function createItem(symbol,className){
+    const item=document.createElement("div");
+    item.className=className;
+    item.innerHTML=symbol;
+    item.style.left=Math.random()*100+"vw";
+    item.style.fontSize=(18+Math.random()*20)+"px";
+    item.style.animationDuration=(6+Math.random()*4)+"s";
+    document.body.appendChild(item);
+
+    setTimeout(()=>{
+        item.remove();
+    },10000);
+}
+
+setInterval(()=>{
+    createItem("❤️","heart");
+},500);
+
+setInterval(()=>{
+    createItem("🌹","rose");
+},900);
+
+// Popup Functions
+function showLetter(){
+    document.getElementById("popup").style.display="flex";
+}
+
+function closeLetter(){
+    document.getElementById("popup").style.display="none";
+}
+
+// Close popup when clicking outside
+document.getElementById("popup").addEventListener("click",function(e){
+    if(e.target===this){
+        closeLetter();
+    }
+});
+// ===== PART 3 - Fun Proposal =====
+
+const popup = document.getElementById("popup");
+
+popup.innerHTML = `
+<div class="card">
+<h2>💖 Mahek 💖</h2>
+<p>Will You Stay With Me Forever? 🥺❤️</p>
+
+<div style="margin-top:20px;position:relative;height:120px;">
+<button id="yesBtn"
+style="background:#ff4d6d;color:white;margin-right:20px;">
+YES ❤️
+</button>
+
+<button id="noBtn"
+style="position:absolute;background:#888;color:white;">
+NO 😜
+</button>
+</div>
+</div>
+`;
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+let count = 0;
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+function moveNo(e){
+    e.preventDefault();
+
+    count++;
+
+    noBtn.style.left = Math.random()*180 + "px";
+    noBtn.style.top = Math.random()*70 + "px";
+
+    if(count==1) noBtn.innerHTML="😅 Try Again";
+    if(count==2) noBtn.innerHTML="😂 Catch Me";
+    if(count==3) noBtn.innerHTML="🙈 Oops!";
+    if(count==4) noBtn.innerHTML="🥹 Please";
+    if(count>=5){
+        noBtn.innerHTML="🤭 Okay Okay";
+        noBtn.style.display="none";
+    }
+}
+yesBtn.onclick=function(){
+popup.innerHTML=`
+<div class="card">
+<h2>💍 Yaaay!! ❤️</h2>
+<p>
+I promise to love you,<br>
+respect you,<br>
+and stand beside you forever. ❤️
+</p>
+
+<div style="font-size:70px;">🥰💍🌹</div>
+
+<button onclick="location.reload()">
+Forever ❤️
+</button>
+</div>
+`;
+}</script>
+
+</body>
+</html>
